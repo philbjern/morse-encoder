@@ -1,7 +1,5 @@
-// code, 1 == dot, 2 == dash
 const codeTable = [];
 
-// signals duration
 const tick = 100;
 
 const dot = '1';
@@ -14,7 +12,7 @@ const paddingWord = '0000000';
 const output = document.querySelector(".blink");
 let interval = null;
 
-let message = '1filip biernat jest super';
+let message = 'test message';
 
 function getCharCode(char) {
 	if (char === ' ') {
@@ -69,6 +67,9 @@ function encode(msg) {
 	return stream.join('');
 }
 
+const progressBar = document.querySelector('#progressBar');
+const outputText = document.querySelector('#outputText');
+
 function startTransmission(stream) {
 	if (stream == undefined) {
 		return;
@@ -80,11 +81,21 @@ function startTransmission(stream) {
 	if (interval != null) {
 		console.log('Reset');
 		i = 0;
+		progressBar.classList.remove('complete');
 		clearInterval(interval);
 	}
 
 	interval = setInterval(function () {
 		// console.log(elem);
+		if (arr.length > 0) {
+			elem = arr.shift();
+		} else {
+			output.classList.remove('on');
+			audio.pause();
+			clearInterval(interval);
+			return;
+		}
+
 		if (elem == 1) {
 			output.classList.add('on');
 			audio.play();
@@ -93,23 +104,18 @@ function startTransmission(stream) {
 			audio.pause();
 			audio.currentTime = 0;
 		}
-		arr.shift();
-		if (arr.length > 0) {
-			elem = arr[0];
-		} else {
-			output.classList.remove('on');
-			audio.pause();
-			clearInterval(interval);
-		}
+		
 		i += 1;
 
 		// update message processed percent
 		if (msgLen > 0) {
 			let processed = i / msgLen * 100;
 			// processed = Math.round(processed * 100) / 100;
-			const progressBar = document.querySelector('#progressBar');
-			progressBar.textContent = processed.toFixed(0) + '%';
+			outputText.textContent = processed.toFixed(0) + '%';
 			progressBar.style.width = `${processed}%`;
+			if (processed >= 99) {
+				progressBar.classList.add('complete');
+			}
 		}
 
 	}, tick);
@@ -158,21 +164,39 @@ parseSymbolTable(lettersTable, codeTable);
 parseSymbolTable(polishLettersTable, codeTable);
 parseSymbolTable(numbersTable, codeTable);
 
+function hideProgressBar() {
+	progressBar.classList.remove('complete');
+	progressBar.style.opacity = '0';
+	progressBar.style.width = '0px';
+	outputText.style.opacity = '0';
+}
+
+function showProgressBar() {
+	progressBar.style.opacity = '1';
+	outputText.style.opacity = '1';
+}
+
 // event listeners
 
 const buttons = document.querySelectorAll(".btn");
 const runButton = buttons[0];
 const resetButton = buttons[1];
 const audio = document.querySelector('#audio');
+const messageTextarea = document.querySelector('#msg');
 
 runButton.addEventListener('click', function (e) {
 	e.preventDefault();
-	let message = document.querySelector('#msg').value;
-	startTransmission(encode(message));
+	let message = messageTextarea.value;
+	if (message != '') {
+		showProgressBar();
+		startTransmission(encode(message));
+	}
 });
 
 resetButton.addEventListener('click', function (e) {
 	e.preventDefault();
 	clearInterval(interval);
 	output.classList.remove('on');
-})
+	messageTextarea.value = '';
+	hideProgressBar();
+});
