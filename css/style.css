@@ -32,11 +32,11 @@ ul li {
 .title {
     text-align: center;
     margin-top: 20px;
-    font-size: 2.8rem;
+    font-size: 3.2rem;
 }
 
 .wrapper {
-    max-width: 750px;
+    max-width: 90%;
     margin: 0 auto;
 }
 
@@ -110,6 +110,7 @@ table {
     width: 100%;
     height: 200px;
     resize: none;
+    box-sizing: border-box;
 }
 
 form {
@@ -204,7 +205,7 @@ form .controls {
 }
 
 #outputText {
-    opacity: 0;
+    opacity: 1;
 }
 
 .blink {
@@ -225,8 +226,64 @@ form .controls {
     background-color: rgba(0,0,0,0.2);
 }
 
+footer {
+    background: rgba(0,0,0,1);
+    color: #fff;
+    text-align: center;
+    margin-top: 50px;
+    min-height: 100px;
+}
+
+
+@media screen and (max-width: 950px) {
+
+    .wrapper {
+        max-width: 650px;
+    }
+
+    .flex-row {
+        display: block;
+    }
+
+    .output .flex-row {
+        display: flex;
+    }
+
+    .flex-row.tables {
+        display: flex;
+    }
+
+}
+
+@media screen and (min-width: 950px) {
+
+    .flex-row > div {
+        flex: 1 0 auto;
+        box-sizing: border-box;
+    }
+
+    #outputText {
+        flex: 0 1 auto;
+    }
+
+    #progressBar {
+        flex: 1 1 auto;
+    }
+
+    .tables-wrapper {
+        margin-left: 15px;
+    }
+
+    .tables-wrapper .dash {
+        display: none;
+    }
+
+}
+
 @media screen and (min-width: 1200px) {
 
-    
+    .wrapper {
+        max-width: 1200px;
+    }
 
 }

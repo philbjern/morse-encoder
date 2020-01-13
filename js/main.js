@@ -112,7 +112,7 @@ function startTransmission(stream) {
 			let processed = i / msgLen * 100;
 			// processed = Math.round(processed * 100) / 100;
 			outputText.textContent = processed.toFixed(0) + '%';
-			progressBar.style.width = `${processed}%`;
+			progressBar.style.flexGrow = `${processed / 100}`;
 			if (processed >= 99) {
 				progressBar.classList.add('complete');
 			}
