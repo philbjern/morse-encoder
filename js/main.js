@@ -78,6 +78,7 @@ function startTransmission(stream) {
 	let arr = stream.split('');
 	let elem = arr[0];
 	let i = 0;
+	audio.currentTime = 0;
 	if (interval != null) {
 		console.log('Reset');
 		i = 0;
