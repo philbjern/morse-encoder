@@ -14,16 +14,26 @@ let interval = null;
 
 let message = 'test message';
 
-function getCharCode(char) {
-	if (char === ' ') {
-		return paddingWord;
+function getCharCode(letter) {
+	let result = {
+		'displayText': '',
+		'stream': ''
 	}
-	char = char.toUpperCase();
-	const charCode = codeTable.filter((e) => e.char == char);
-	let outputStream = [];
 
-	if (charCode && charCode[0]) {
-		code = charCode[0].code;
+	if (letter === ' ') {
+		result.displayText = ' ';
+		result.stream = paddingWord;
+		return result;
+	}
+
+	letter = letter.toUpperCase();
+	const charObj = codeTable.filter((e) => e.letter == letter);
+	
+	let outputStream = [];
+	
+	if (charObj && charObj[0]) {
+		result.displayText = charObj[0].letter + ' ' + charObj[0].morseCode;
+		code = charObj[0].morseCode;
 		code.split('').map(elem => {
 			if (elem === '1') {
 				outputStream.push(dot);
@@ -34,50 +44,59 @@ function getCharCode(char) {
 		});
 		outputStream.pop();
 		outputStream.push(paddingChar);
-		return outputStream.join('');
-	} else {
-		return '';
+		result.stream = outputStream.join('');
 	}
-
+	return result;
 }
 
-function removeLastThreeCharactersInLastElement(array) {
-	if (array == undefined || array.length == 0) {
-		return;
-	}
-	let lastChar = array.pop();
-	lastChar = lastChar.substring(0, lastChar.length - 3);
-	array.push(lastChar);
+// function removeLastThreeCharactersInLastElement(array) {
+// 	if (array == undefined || array.length == 0) {
+// 		return;
+// 	}
+// 	let lastChar = array.pop();
+// 	lastChar = lastChar.substring(0, lastChar.length - 3);
+// 	array.push(lastChar);
+// }
+
+function removeLastThreeChars(arr) {
+	string = arr[arr.length - 1].stream
+	string = string.substring(0, string.length - 3);
+	arr[arr.length - 1].stream = string;
+	console.log(string);	
+	return string;
 }
 
 function encode(msg) {
 	if (msg == undefined) {
 		return;
 	}
-	let stream = [];
+	let result = [];
 	msg.split('').map((char) => {
 		if (char === ' ') {
 			// remove 3 zeros in last character in stream
-			removeLastThreeCharactersInLastElement(stream);
+			removeLastThreeChars(result);
 		}
-		stream.push(getCharCode(char));
+		result.push(getCharCode(char));
 	})
-	removeLastThreeCharactersInLastElement(stream);
-	console.log(stream);
-	return stream.join('');
+	removeLastThreeChars(result);
+	// return stream.join('');
+	return result;
 }
 
 const progressBar = document.querySelector('#progressBar');
-const outputText = document.querySelector('#outputText');
+const progressBarText = document.querySelector('#outputText');
+const letterDisplay = document.querySelector('#character-display');
 
-function startTransmission(stream) {
-	if (stream == undefined) {
+function transmit(message) {
+	if (message == undefined) {
 		return;
 	}
-	const msgLen = stream.length;
-	let arr = stream.split('');
-	let elem = arr[0];
+	const streamArr = encode(message);
+	const msgLen = streamArr.length;
 	let i = 0;
+	let bits = streamArr[i].stream.split('');
+	let elem = bits[0];
+	letterDisplay.textContent = streamArr[i].displayText;
 	audio.currentTime = 0;
 	if (interval != null) {
 		console.log('Reset');
@@ -87,14 +106,25 @@ function startTransmission(stream) {
 	}
 
 	interval = setInterval(function () {
-		// console.log(elem);
-		if (arr.length > 0) {
-			elem = arr.shift();
-		} else {
+		if (i == streamArr.length) {
+			// end
 			output.classList.remove('on');
 			audio.pause();
 			clearInterval(interval);
 			return;
+		}
+
+		if (bits.length > 0) {
+			elem = bits.shift();
+		} else {
+			i++;
+			// display currently transmitted letter
+			if (i < streamArr.length) {
+				// move to next character
+				letterDisplay.textContent = streamArr[i].displayText;
+				bits = streamArr[i].stream.split('');
+				elem = bits[0];
+			}
 		}
 
 		if (elem == 1) {
@@ -106,13 +136,11 @@ function startTransmission(stream) {
 			audio.currentTime = 0;
 		}
 		
-		i += 1;
-
 		// update message processed percent
 		if (msgLen > 0) {
 			let processed = i / msgLen * 100;
 			// processed = Math.round(processed * 100) / 100;
-			outputText.textContent = processed.toFixed(0) + '%';
+			progressBarText.textContent = processed.toFixed(0) + '%';
 			progressBar.style.flexGrow = `${processed / 100}`;
 			if (processed >= 99) {
 				progressBar.classList.add('complete');
@@ -147,8 +175,8 @@ function parseSymbolTable(htmlTable, symbolTable) {
 		});
 
 		let obj = {
-			'char': cells[0].textContent.trim(),
-			'code': code.join('')
+			'letter': cells[0].textContent.trim(),
+			'morseCode': code.join('')
 		}
 
 		symbolTable.push(obj);
@@ -190,7 +218,7 @@ runButton.addEventListener('click', function (e) {
 	let message = messageTextarea.value;
 	if (message != '') {
 		showProgressBar();
-		startTransmission(encode(message));
+		transmit(message);
 	}
 });
 
@@ -199,5 +227,6 @@ resetButton.addEventListener('click', function (e) {
 	clearInterval(interval);
 	output.classList.remove('on');
 	messageTextarea.value = '';
+	letterDisplay.textContent = '';
 	hideProgressBar();
 });
