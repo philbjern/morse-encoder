@@ -1,6 +1,6 @@
 const codeTable = [];
 
-const tick = 100;
+const tick = 50;
 
 const dot = '1';
 const dash = '111';
@@ -35,9 +35,9 @@ function getCharCode(letter) {
 		result.displayText = charObj[0].letter + ' ' + charObj[0].morseCode;
 		code = charObj[0].morseCode;
 		code.split('').map(elem => {
-			if (elem === '1') {
+			if (elem === '•') {
 				outputStream.push(dot);
-			} else if (elem === '2') {
+			} else if (elem === '—') {
 				outputStream.push(dash);
 			}
 			outputStream.push(padding);
@@ -49,20 +49,10 @@ function getCharCode(letter) {
 	return result;
 }
 
-// function removeLastThreeCharactersInLastElement(array) {
-// 	if (array == undefined || array.length == 0) {
-// 		return;
-// 	}
-// 	let lastChar = array.pop();
-// 	lastChar = lastChar.substring(0, lastChar.length - 3);
-// 	array.push(lastChar);
-// }
-
 function removeLastThreeChars(arr) {
 	string = arr[arr.length - 1].stream
 	string = string.substring(0, string.length - 3);
 	arr[arr.length - 1].stream = string;
-	console.log(string);	
 	return string;
 }
 
@@ -110,6 +100,7 @@ function transmit(message) {
 			// end
 			output.classList.remove('on');
 			audio.pause();
+			letterDisplay.textContent = '';
 			clearInterval(interval);
 			return;
 		}
@@ -164,19 +155,10 @@ function parseSymbolTable(htmlTable, symbolTable) {
 		if (cells == undefined || cells.length == 0) {
 			return;
 		}
-		let codeText = cells[1].textContent.trim();
-		// or just store those symbols?
-		codeText.split('').map(char => {
-			if (char == '•') {
-				code.push('1');
-			} else if (char == '—') {
-				code.push('2');
-			}
-		});
 
 		let obj = {
 			'letter': cells[0].textContent.trim(),
-			'morseCode': code.join('')
+			'morseCode': cells[1].textContent.trim()
 		}
 
 		symbolTable.push(obj);
@@ -196,7 +178,7 @@ parseSymbolTable(numbersTable, codeTable);
 function hideProgressBar() {
 	progressBar.classList.remove('complete');
 	progressBar.style.opacity = '0';
-	progressBar.style.width = '0px';
+	progressBar.style.flexGrow = '0';
 	outputText.style.opacity = '0';
 }
 

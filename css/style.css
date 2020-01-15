@@ -9,7 +9,7 @@ body {
     margin: 0;
     font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
-    background: linear-gradient(30deg,#80D8FF, rgb(146, 216, 248));
+    background: linear-gradient(30deg,#80D8FF, rgb(206, 240, 255));
     color: rgba(0,0,0,0.85);
 }
 
@@ -213,7 +213,7 @@ form .controls {
     margin-left: 5px;
     height: 5px;
     font-size: 0.8rem;
-    transition: all 0.15s;
+    transition: all 0.25s;
     width: 0;
     position: relative;
     background-color: rgba(0,0,0,0.2);
