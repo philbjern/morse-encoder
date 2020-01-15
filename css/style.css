@@ -306,9 +306,9 @@ footer .wrapper {
 }
 
 @media screen and (min-width: 950px) {
-
+    
     .flex-row > div {
-        flex: 1 0 auto;
+        flex: 1 0 50%;
         box-sizing: border-box;
     }
 
