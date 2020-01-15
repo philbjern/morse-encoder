@@ -157,7 +157,7 @@ function parseSymbolTable(htmlTable, symbolTable) {
 		}
 
 		let obj = {
-			'letter': cells[0].textContent.trim(),
+			'letter': cells[0].textContent.trim().toUpperCase(),
 			'morseCode': cells[1].textContent.trim()
 		}
 
