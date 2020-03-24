@@ -130,7 +130,6 @@ function transmit(message) {
 		// update message processed percent
 		if (msgLen > 0) {
 			let processed = i / msgLen * 100;
-			// processed = Math.round(processed * 100) / 100;
 			progressBarText.textContent = processed.toFixed(0) + '%';
 			progressBar.style.flexGrow = `${processed / 100}`;
 			if (processed >= 99) {
@@ -150,7 +149,6 @@ function parseSymbolTable(htmlTable, symbolTable) {
 	const rows = htmlTable.querySelectorAll("tr");
 
 	rows.forEach((row) => {
-		let code = [];
 		const cells = row.querySelectorAll('td');
 		if (cells == undefined || cells.length == 0) {
 			return;
@@ -210,5 +208,24 @@ resetButton.addEventListener('click', function (e) {
 	output.classList.remove('on');
 	messageTextarea.value = '';
 	letterDisplay.textContent = '';
+	hideProgressBar();
+});
+
+const navLinks = document.querySelectorAll('.nav a');
+
+navLinks.forEach((element) => {
+	element.addEventListener('click', (e) => {
+		e.preventDefault();
+		if (e.target.hash !== '') {
+			const target = document.querySelector(e.target.hash);
+			target.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		}
+	});
+})
+
+document.addEventListener('DOMContentLoaded', (e) => {
 	hideProgressBar();
 });
