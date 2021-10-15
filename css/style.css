@@ -7,14 +7,16 @@ html {
 
 body {
     margin: 0;
+    min-height: 100vh;
     font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
-    background: linear-gradient(30deg,#80D8FF, rgb(206, 240, 255));
+    background: linear-gradient(30deg,#d8f1fc, rgb(221, 238, 245));
     color: rgba(0,0,0,0.85);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Times, serif;
+    /* font-family: 'Playfair Display', Times, serif; */
+    font-family: 'Roboto', sans-serif;
 }
 
 p {
@@ -28,6 +30,13 @@ ul {
 
 ul li {
     padding: 5px 0;
+}
+
+.container {
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
 }
 
 .container a {
@@ -61,16 +70,8 @@ ul li {
 }
 
 .wrapper {
-    max-width: 60%;
+    width: 100%;
     margin: 0 auto;
-}
-
-.container {
-    margin: 20px auto;
-    padding: 50px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .topbar {
@@ -86,9 +87,16 @@ ul li {
 }
 
 .logo {
+    font-size: 2.2rem;
     display: inline-block;
     margin-right: 10px;
     flex: 1 0 auto;
+}
+
+.navbar {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .nav {
@@ -100,19 +108,56 @@ ul li {
 
 .nav li {
     display: inline-block;
+    padding: 10px 5px;
 }
 
 .nav li a {
-    padding: 15px 10px;
     color: black;
     text-decoration: none;
     font-size: 1.1rem;
     transition: all 0.25s;
+    position: relative;
+    padding: 5px 0;
 }
 
 .nav li a:hover {
     color: #01579B;
 }
+
+.nav li a:after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 27px;
+    left: 0;
+    display: inline-block;
+    transition: all 0.6s;
+}
+
+.nav li a:hover:after {
+    width: 100%;
+    background-color: #01579B;
+}
+
+/* .controls .btn:after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 1;
+    transition: all 0.25s;
+}
+
+.controls .btn:hover:after {
+    height: 100%;
+    top: 0;
+    background-color: black;
+} */
 
 .dash {
     width: 20px;
@@ -125,17 +170,96 @@ ul li {
     margin: 10px 0;
 }
 
-.flex-row {
+.flex {
     display: flex;
+}
+
+.flex-row {
     flex-direction: row;
 }
 
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
 .flex-half {
-    flex: 1 0 50%;
+    flex: 1 0;
+}
+
+.flex-center {
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.m-2 {
+    margin: 1em;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.input-textarea {
+    background-color: #eee;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.tower {
+    position: relative;
+}
+
+
+.blink {
+    position: absolute;
+    top: 9px;
+    left: 32px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* background-color: rgb(128, 12, 12); */
+    transition: all 0.15s;
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+.blink.on {
+    /* background-color: rgb(204, 22, 22); */
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px; */
+    box-shadow: rgba(223, 50, 50, 0.226) 0 -1px 7px 11px, inset #7c2222 0 -1px 12px, rgba(255, 51, 0, 0.678) 0 2px 12px;
+}
+
+.blink.off {
+    background-color: rgba(0,0,0,0.2);
+}
+
+#character-display {
+    text-align: center;
+    font-size: 1.6rem;
+    width: 100%;
+    border: 0;
+}
+
+#character-display.hide {
+    opacity: 0;
 }
 
 table {
     flex: 1 0 auto;
+}
+
+.tables-wrapper {
+    width: 100%;
 }
 
 #msg {
@@ -147,7 +271,7 @@ table {
 
 form {
     margin: auto;
-    flex: 1 0 50%;
+    flex: 1 0 auto;
 }
 
 form .controls {
@@ -202,7 +326,7 @@ form .controls {
     color: white;
 }
 
-.output {
+/* .output {
     margin-bottom: 20px;
     flex: 1 0 50%;
     display: flex;
@@ -212,18 +336,28 @@ form .controls {
 
 .output .flex-row {
     width: 100%;
+} */
+
+.width-100 {
+    width: 100%;
+}
+
+.progress-bar-wrapper {
+    background-color: silver;
+    display: flex;
+    height: 5px;
+    width: 95%;
 }
 
 #progressBar {
     align-self: center;
     text-align: right;
-    margin-left: 5px;
     height: 5px;
     font-size: 0.8rem;
     transition: all 0.25s;
     width: 0;
     position: relative;
-    background-color: rgba(0,0,0,0.2);
+    background-color: lightgreen;
     color: white;
 }
 
@@ -237,46 +371,22 @@ form .controls {
 
 #outputText {
     opacity: 1;
+    padding: 3px;
 }
 
 .float-right {
     float: right;
 }
 
-.float-left {
-    float: left;
+.tables {
+    align-items: flex-start;
 }
 
-.blink {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: rgb(128, 12, 12);
-    transition: all 0.15s;
-    margin: 5px;
-    margin-bottom: 15px;
-}
-
-.blink.on {
-    background-color: rgb(204, 22, 22);
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
-}
-
-.blink.off {
-    background-color: rgba(0,0,0,0.2);
-}
-
-#character-display {
-    text-align: center;
-    font-size: 1.6rem;
-    display: inline-block;
-}
 
 footer {
-    background: rgba(0,0,0,0.8);
-    color: #fff;
+    color: #777;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
     min-height: 100px;
 }
 
@@ -290,10 +400,15 @@ footer .wrapper {
     flex: 1 0 auto;
 }
 
+.display-none {
+    display: none;
+}
+
 @media screen and (max-width: 1000px) {
 
     .wrapper {
-        max-width: 650px;
+        max-width: 90%;
+        min-width: 370px;
     }
 
     .flex-row {
@@ -308,14 +423,25 @@ footer .wrapper {
         display: flex;
     }
 
+    .navbar {
+        display: block;
+    }
+    .nav {
+        margin-bottom: 1.5em;
+    }
+
 }
 
 @media screen and (min-width: 1000px) {
     
-    .flex-row > div {
-        flex: 1 0 50%;
-        box-sizing: border-box;
+    .wrapper {
+        max-width: 70%;
     }
+
+    /* .flex-row > div {
+        flex: 1 0 auto;
+        box-sizing: border-box;
+    } */
 
     #outputText {
         flex: 0 1 auto;
@@ -325,24 +451,18 @@ footer .wrapper {
         flex: 1 1 auto;
     }
 
-    .tables-wrapper {
-        margin-left: 15px;
-    }
-
     .tables-wrapper .dash {
         display: none;
     }
 
-    #msg {
-        height: 350px;
-    }
+ 
 
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1300px) {
 
     .wrapper {
-        max-width: 1200px;
+        max-width: 680px;
     }
 
 }

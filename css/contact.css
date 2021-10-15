@@ -1,0 +1,35 @@
+.contact-img {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-img img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+
+.contact-info p {
+  font-size: 1.45rem;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-info-row {
+  display: flex;
+  margin: 1.2rem 0;
+}
+
+.column-wide {
+  flex: 1 0;
+}
+
+.column-narrow {
+  flex: 1 1;
+}
+
+.bold {
+  font-weight: bold;
+}

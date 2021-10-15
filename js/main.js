@@ -82,12 +82,16 @@ function transmit(message) {
 		return;
 	}
 	const streamArr = encode(message);
+	console.log(streamArr);
+
 	const msgLen = streamArr.length;
 	let i = 0;
 	let bits = streamArr[i].stream.split('');
 	let elem = bits[0];
-	letterDisplay.textContent = streamArr[i].displayText;
-	audio.currentTime = 0;
+	letterDisplay.classList.remove('hide');
+	letterDisplay.value = streamArr[i].displayText;
+	audio.load();
+	audio.play();
 	if (interval != null) {
 		console.log('Reset');
 		i = 0;
@@ -99,8 +103,8 @@ function transmit(message) {
 		if (i == streamArr.length) {
 			// end
 			output.classList.remove('on');
-			audio.pause();
-			letterDisplay.textContent = '';
+			audio.muted = true;
+			letterDisplay.classList.add('hide');
 			clearInterval(interval);
 			return;
 		}
@@ -112,7 +116,7 @@ function transmit(message) {
 			// display currently transmitted letter
 			if (i < streamArr.length) {
 				// move to next character
-				letterDisplay.textContent = streamArr[i].displayText;
+				letterDisplay.value = streamArr[i].displayText;
 				bits = streamArr[i].stream.split('');
 				elem = bits[0];
 			}
@@ -120,11 +124,11 @@ function transmit(message) {
 
 		if (elem == 1) {
 			output.classList.add('on');
-			audio.play();
+			// audio.play();
+			audio.muted = false;
 		} else if (elem == 0) {
 			output.classList.remove('on');
-			audio.pause();
-			audio.currentTime = 0;
+			audio.muted = true;
 		}
 		
 		// update message processed percent
@@ -132,6 +136,7 @@ function transmit(message) {
 			let processed = i / msgLen * 100;
 			progressBarText.textContent = processed.toFixed(0) + '%';
 			progressBar.style.flexGrow = `${processed / 100}`;
+			progressBar.style.width = `${processed}%`;
 			if (processed >= 99) {
 				progressBar.classList.add('complete');
 			}
@@ -173,14 +178,19 @@ parseSymbolTable(lettersTable, codeTable);
 parseSymbolTable(polishLettersTable, codeTable);
 parseSymbolTable(numbersTable, codeTable);
 
+const progressBarWrapper = document.querySelector('.progress-bar-wrapper');
+
 function hideProgressBar() {
 	progressBar.classList.remove('complete');
+	progressBarWrapper.style.opacity = '0';
 	progressBar.style.opacity = '0';
 	progressBar.style.flexGrow = '0';
+	progressBar.style.width = '0px';
 	outputText.style.opacity = '0';
 }
 
 function showProgressBar() {
+	progressBarWrapper.style.opacity = '1';
 	progressBar.style.opacity = '1';
 	outputText.style.opacity = '1';
 }
@@ -207,24 +217,24 @@ resetButton.addEventListener('click', function (e) {
 	clearInterval(interval);
 	output.classList.remove('on');
 	messageTextarea.value = '';
-	letterDisplay.textContent = '';
+	letterDisplay.classList.add('hide');
 	hideProgressBar();
 });
 
 const navLinks = document.querySelectorAll('.nav a');
 
-navLinks.forEach((element) => {
-	element.addEventListener('click', (e) => {
-		e.preventDefault();
-		if (e.target.hash !== '') {
-			const target = document.querySelector(e.target.hash);
-			target.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start'
-			});
-		}
-	});
-})
+// navLinks.forEach((element) => {
+// 	element.addEventListener('click', (e) => {
+// 		e.preventDefault();
+// 		if (e.target.hash !== '') {
+// 			const target = document.querySelector(e.target.hash);
+// 			target.scrollIntoView({
+// 				behavior: 'smooth',
+// 				block: 'start'
+// 			});
+// 		}
+// 	});
+// })
 
 document.addEventListener('DOMContentLoaded', (e) => {
 	hideProgressBar();
