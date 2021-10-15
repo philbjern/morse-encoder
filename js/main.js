@@ -82,11 +82,14 @@ function transmit(message) {
 		return;
 	}
 	const streamArr = encode(message);
+	console.log(streamArr);
+
 	const msgLen = streamArr.length;
 	let i = 0;
 	let bits = streamArr[i].stream.split('');
 	let elem = bits[0];
-	letterDisplay.textContent = streamArr[i].displayText;
+	letterDisplay.classList.remove('hide');
+	letterDisplay.value = streamArr[i].displayText;
 	audio.currentTime = 0;
 	if (interval != null) {
 		console.log('Reset');
@@ -100,7 +103,7 @@ function transmit(message) {
 			// end
 			output.classList.remove('on');
 			audio.pause();
-			letterDisplay.textContent = '';
+			letterDisplay.classList.add('hide');
 			clearInterval(interval);
 			return;
 		}
@@ -112,7 +115,7 @@ function transmit(message) {
 			// display currently transmitted letter
 			if (i < streamArr.length) {
 				// move to next character
-				letterDisplay.textContent = streamArr[i].displayText;
+				letterDisplay.value = streamArr[i].displayText;
 				bits = streamArr[i].stream.split('');
 				elem = bits[0];
 			}
@@ -124,7 +127,7 @@ function transmit(message) {
 		} else if (elem == 0) {
 			output.classList.remove('on');
 			audio.pause();
-			audio.currentTime = 0;
+			audio.currentTime = 1;
 		}
 		
 		// update message processed percent
@@ -132,6 +135,7 @@ function transmit(message) {
 			let processed = i / msgLen * 100;
 			progressBarText.textContent = processed.toFixed(0) + '%';
 			progressBar.style.flexGrow = `${processed / 100}`;
+			progressBar.style.width = `${processed}%`;
 			if (processed >= 99) {
 				progressBar.classList.add('complete');
 			}
@@ -207,7 +211,7 @@ resetButton.addEventListener('click', function (e) {
 	clearInterval(interval);
 	output.classList.remove('on');
 	messageTextarea.value = '';
-	letterDisplay.textContent = '';
+	letterDisplay.classList.add('hide');
 	hideProgressBar();
 });
 
