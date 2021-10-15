@@ -5,75 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Morse encoder</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/home.css">
   </head>
 
   <body>
     <main class="wrapper">
       <nav class="navbar">
-        <h2 class="logo">Morse encoder</h2>
+        <h1 class="logo">Morse encoder</h1>
         <ul class="nav">
-          <li><a href="#encoder">Encoder</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+            <li><a href="index.html">Encoder</a></li>
+            <li><a href="code-table.html">Alphabet</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
       </nav>
       <div class="container">
         <section>
-            <div class="flex flex-row flex-center">
-                <div class="m-2 flex-grow-1 flex-column flex-center">
+          <div class="flex flex-row flex-center">
+            <div class="m-2 flex-grow-1 flex-column flex-center">
+              <div class="tower">
+                <div class="blink"></div>
+                <img
+                  src="assets/img/transmission-tower.png"
+                  alt="Transsmision tower"
+                />
+              </div>
 
-                    <div class="tower">
-                        <div class="blink"></div>
-                        <img src="assets/img/transmission-tower.png" alt="Transsmision tower">
-                    </div>
-
-                    <div class="flex flex-center width-100">
-                        <div class="progress-bar-wrapper width-100">
-                            <div id="progressBar"></div>
-                        </div>
-                        <div id="outputText">0%</div>
-                    </div>
-                    <input type="text" class="hide" id="character-display">
-    <!--                     
-
-                    <div class="output">
-                      <div>
-                        <div>
-                          <div class="blink float-right">wieza</div>
-                        </div>
-                        <div>
-                          <span class="float-left" id="character-display"></span>
-                        </div>
-                      </div>
-                      <div class="flex-row">
-                        <div id="outputText">0%</div>
-                        <div id="progressBar"></div>
-                      </div>
-                    </div> -->
-
+              <div class="flex flex-center width-100">
+                <div class="progress-bar-wrapper width-100">
+                  <div id="progressBar"></div>
                 </div>
-                <div class="m-2 flex-grow-2">
-                    <form>
-                        <h2>Wiadomość do przesłania</h2>
-                      <textarea
-                        name="message"
-                        id="msg"
-                        cols="30"
-                        rows="10"
-                        placeholder="Wprowadź wiadomość do zakodowania ..."
-                        class="input-textarea"
-                      ></textarea>
-                      <div class="controls">
-                        <div class="btn"><span>Start</span></div>
-                        <div class="btn"><span>Reset</span></div>
-                      </div>
-                    </form>
-                </div>
-
+                <div id="outputText">0%</div>
+              </div>
+              <input type="text" class="hide" id="character-display" />
             </div>
+            <div class="m-2 flex-grow-2">
+              <form>
+                <h2>Wiadomość do przesłania</h2>
+                <textarea
+                  name="message"
+                  id="msg"
+                  cols="30"
+                  rows="10"
+                  placeholder="Wprowadź wiadomość do zakodowania ..."
+                  class="input-textarea"
+                ></textarea>
+                <div class="controls">
+                  <div class="btn"><span>Start</span></div>
+                  <div class="btn"><span>Reset</span></div>
+                </div>
+              </form>
+            </div>
+          </div>
         </section>
 
-        <section>
+        <section class="display-none">
           <div class="tables-wrapper">
             <div class="dash left"></div>
             <h2>Alfabet Morse'a</h2>
@@ -314,424 +300,8 @@
             </div>
           </div>
         </section>
-
-        <section>
-          <h2 id="about">Historia</h2>
-
-          <p>
-            Kod Morse’a – stworzony w 1838 przez Samuela Morse’a i Alfreda Vaila
-            sposób reprezentacji alfabetu, cyfr i znaków specjalnych za pomocą
-            dźwięków, błysków światła, impulsów elektrycznych lub znaków
-            popularnie zwanych kreską i kropką.
-          </p>
-
-          <p>
-            Wszystkie znaki reprezentowane są przez kilkuelementowe serie
-            sygnałów – krótkich (kropek) i długich (kresek).
-          </p>
-
-          <p>Kreska powinna trwać co najmniej tyle czasu, co trzy kropki.</p>
-
-          <b>Odstępy:</b>
-          <ul>
-            <li>
-              Odstęp pomiędzy elementami znaku powinien trwać jedną kropkę.
-            </li>
-            <li>Odstęp pomiędzy poszczególnymi znakami – trzy kropki.</li>
-            <li>Odstęp pomiędzy grupami znaków (słowami) – siedem kropek.</li>
-          </ul>
-
-          <p>
-            Początkowo Morse stworzył swój kod z zamiarem wykorzystania go z
-            telegrafem elektrycznym we wczesnych latach 40. XIX wieku, a od 1890
-            kod Morse’a był już szeroko wykorzystywany w telekomunikacji
-            radiowej. W pierwszej połowie XIX wieku większość szybkiej,
-            międzynarodowej korespondencji przeprowadzano z wykorzystaniem kodu
-            Morse’a przy użyciu linii telegraficznych, podwodnych kabli i
-            obwodów radiowych.
-          </p>
-
-          <p>
-            Obecnie najczęściej używany jest przez radioamatorów, mimo iż nie
-            jest już wymagany podczas egzaminu na licencję krótkofalarską w
-            wielu krajach. Międzynarodowy kod Morse’a jest obecnie nazywany
-            „międzynarodowym kodem radiowym”, przede wszystkim z tego powodu, że
-            kod będący w dzisiejszym użyciu został znacznie zmodyfikowany w
-            stosunku do tego, który wymyślił Samuel Morse. Zmiany te miały na
-            celu zwiększyć jego przydatność w nowoczesnej komunikacji. W
-            zakresie profesjonalnym piloci i kontrolerzy lotu zwykle są
-            zaznajomieni z kodem Morse’a – urządzenia radionawigacyjne, takie
-            jak VOR i NDB, w sposób ciągły wysyłają swoje identyfikatory za
-            pomocą kodu Morse’a.
-          </p>
-
-          <p>
-            Kod Morse’a jest zaprojektowany w ten sposób, aby człowiek był w
-            stanie go zrozumieć bez specjalnego urządzenia dekodującego. W
-            sytuacji awaryjnej kod ten może być łatwo nadany za pomocą
-            zaimprowizowanych środków, dzięki czemu jest wszechstronnym i
-            uniwersalnym sposobem telekomunikacji.
-          </p>
-
-          <a
-            href="https://pl.wikipedia.org/wiki/Kod_Morse%E2%80%99a"
-            target="_blank"
-            >Źródło</a
-          >
-        </section>
       </div>
     </main>
-<!--
-    <div class="topbar">
-      <div class="wrapper">
-        <h2 class="logo">Morse encoder</h2>
-        <ul class="nav">
-          <li><a href="#encoder">Encoder</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <h1 class="title">Morse encoder</h1>
-    <div class="wrapper">
-      <div class="container">
-        <div class="flex-row">
-          <div>
-            <h2 id="encoder">Nadajnik</h2>
-            <div class="output">
-              <div class="flex-row">
-                <div class="flex-half">
-                  <div class="blink float-right"></div>
-                </div>
-                <div class="flex-half">
-                  <span class="float-left" id="character-display"></span>
-                </div>
-              </div>
-              <div class="flex-row">
-                <div id="outputText">0%</div>
-                <div id="progressBar"></div>
-              </div>
-            </div>
-            <form>
-              <textarea
-                name="message"
-                id="msg"
-                cols="30"
-                rows="10"
-                placeholder="Wprowadź wiadomość do zakodowania ..."
-              ></textarea>
-              <div class="controls">
-                <div class="btn"><span>Start</span></div>
-                <div class="btn"><span>Reset</span></div>
-              </div>
-            </form>
-          </div>
-
-          <div class="tables-wrapper">
-            <div class="dash left"></div>
-            <h2>Alfabet</h2>
-            <div class="flex-row tables">
-              <table id="letters-table">
-                <thead>
-                  <th colspan="2">
-                    <h3>Litery</h3>
-                  </th>
-                </thead>
-                <tr>
-                  <td>A</td>
-                  <td>• —</td>
-                </tr>
-                <tr>
-                  <td>B</td>
-                  <td>— • • •</td>
-                </tr>
-
-                <tr>
-                  <td>C</td>
-                  <td>— • — •</td>
-                </tr>
-
-                <tr>
-                  <td>D</td>
-                  <td>— • •</td>
-                </tr>
-
-                <tr>
-                  <td>E</td>
-                  <td>•</td>
-                </tr>
-
-                <tr>
-                  <td>F</td>
-                  <td>• • — •</td>
-                </tr>
-
-                <tr>
-                  <td>G</td>
-                  <td>— — •</td>
-                </tr>
-
-                <tr>
-                  <td>H</td>
-                  <td>• • • •</td>
-                </tr>
-
-                <tr>
-                  <td>I</td>
-                  <td>• •</td>
-                </tr>
-
-                <tr>
-                  <td>J</td>
-                  <td>• — — —</td>
-                </tr>
-
-                <tr>
-                  <td>K</td>
-                  <td>— • —</td>
-                </tr>
-
-                <tr>
-                  <td>L</td>
-                  <td>• — • •</td>
-                </tr>
-
-                <tr>
-                  <td>M</td>
-                  <td>— —</td>
-                </tr>
-                <tr>
-                  <td>N</td>
-                  <td>— •</td>
-                </tr>
-                <tr>
-                  <td>O</td>
-                  <td>— — —</td>
-                </tr>
-                <tr>
-                  <td>P</td>
-                  <td>• — — •</td>
-                </tr>
-                <tr>
-                  <td>Q</td>
-                  <td>— — • —</td>
-                </tr>
-                <tr>
-                  <td>R</td>
-                  <td>• — •</td>
-                </tr>
-                <tr>
-                  <td>S</td>
-                  <td>• • •</td>
-                </tr>
-                <tr>
-                  <td>T</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td>U</td>
-                  <td>• • —</td>
-                </tr>
-
-                <tr>
-                  <td>V</td>
-                  <td>• • • —</td>
-                </tr>
-                <tr>
-                  <td>W</td>
-                  <td>• — —</td>
-                </tr>
-                <tr>
-                  <td>X</td>
-                  <td>— • • —</td>
-                </tr>
-                <tr>
-                  <td>Y</td>
-                  <td>— • — —</td>
-                </tr>
-                <tr>
-                  <td>Z</td>
-                  <td>— — • •</td>
-                </tr>
-              </table>
-
-              <table id="letters-polish-table">
-                <thead>
-                  <th colspan="2">
-                    <h3>Polskie znaki</h3>
-                  </th>
-                </thead>
-                <tr>
-                  <td>ą</td>
-                  <td>• — • —</td>
-                </tr>
-                <tr>
-                  <td>ć</td>
-                  <td>— • — • •</td>
-                </tr>
-                <tr>
-                  <td>ę</td>
-                  <td>• • — • •</td>
-                </tr>
-                <tr>
-                  <td>é</td>
-                  <td>• • — • •</td>
-                </tr>
-                <tr>
-                  <td>ch</td>
-                  <td>— — — —</td>
-                </tr>
-                <tr>
-                  <td>ł</td>
-                  <td>• — • • —</td>
-                </tr>
-                <tr>
-                  <td>ń</td>
-                  <td>— — • — —</td>
-                </tr>
-                <tr>
-                  <td>ó</td>
-                  <td>— — — •</td>
-                </tr>
-                <tr>
-                  <td>ś</td>
-                  <td>• • • — • • •</td>
-                </tr>
-                <tr>
-                  <td>ż</td>
-                  <td>— — • • — •</td>
-                </tr>
-                <tr>
-                  <td>ź</td>
-                  <td>— — • • —</td>
-                </tr>
-              </table>
-
-              <table id="numbers-table">
-                <thead>
-                  <th colspan="3">
-                    <h3>Cyfry</h3>
-                  </th>
-                </thead>
-                <tr>
-                  <td>1</td>
-                  <td>• — — — —</td>
-                  <td>• —</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>• • — — —</td>
-                  <td>• • —</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>• • • — —</td>
-                  <td>• • • —</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>• • • • —</td>
-                  <td>• • • • —</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>• • • • •</td>
-                  <td>• • • • •</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>— • • • •</td>
-                  <td>— • • • •</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>— — • • •</td>
-                  <td>— • • •</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>— — — • •</td>
-                  <td>— • •</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>— — — — •</td>
-                  <td>— •</td>
-                </tr>
-                <tr>
-                  <td>0</td>
-                  <td>— — — — —</td>
-                  <td>—</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="dash left"></div>
-
-        <h2 id="about">Kod Morse'a</h2>
-
-        <p>
-          Kod Morse’a – stworzony w 1838 przez Samuela Morse’a i Alfreda Vaila
-          sposób reprezentacji alfabetu, cyfr i znaków specjalnych za pomocą
-          dźwięków, błysków światła, impulsów elektrycznych lub znaków
-          popularnie zwanych kreską i kropką.
-        </p>
-
-        <p>
-          Wszystkie znaki reprezentowane są przez kilkuelementowe serie sygnałów
-          – krótkich (kropek) i długich (kresek).
-        </p>
-
-        <p>Kreska powinna trwać co najmniej tyle czasu, co trzy kropki.</p>
-
-        <b>Odstępy:</b>
-        <ul>
-          <li>Odstęp pomiędzy elementami znaku powinien trwać jedną kropkę.</li>
-          <li>Odstęp pomiędzy poszczególnymi znakami – trzy kropki.</li>
-          <li>Odstęp pomiędzy grupami znaków (słowami) – siedem kropek.</li>
-        </ul>
-
-        <p>
-          Początkowo Morse stworzył swój kod z zamiarem wykorzystania go z
-          telegrafem elektrycznym we wczesnych latach 40. XIX wieku, a od 1890
-          kod Morse’a był już szeroko wykorzystywany w telekomunikacji radiowej.
-          W pierwszej połowie XIX wieku większość szybkiej, międzynarodowej
-          korespondencji przeprowadzano z wykorzystaniem kodu Morse’a przy
-          użyciu linii telegraficznych, podwodnych kabli i obwodów radiowych.
-        </p>
-
-        <p>
-          Obecnie najczęściej używany jest przez radioamatorów, mimo iż nie jest
-          już wymagany podczas egzaminu na licencję krótkofalarską w wielu
-          krajach. Międzynarodowy kod Morse’a jest obecnie nazywany
-          „międzynarodowym kodem radiowym”, przede wszystkim z tego powodu, że
-          kod będący w dzisiejszym użyciu został znacznie zmodyfikowany w
-          stosunku do tego, który wymyślił Samuel Morse. Zmiany te miały na celu
-          zwiększyć jego przydatność w nowoczesnej komunikacji. W zakresie
-          profesjonalnym piloci i kontrolerzy lotu zwykle są zaznajomieni z
-          kodem Morse’a – urządzenia radionawigacyjne, takie jak VOR i NDB, w
-          sposób ciągły wysyłają swoje identyfikatory za pomocą kodu Morse’a.
-        </p>
-
-        <p>
-          Kod Morse’a jest zaprojektowany w ten sposób, aby człowiek był w
-          stanie go zrozumieć bez specjalnego urządzenia dekodującego. W
-          sytuacji awaryjnej kod ten może być łatwo nadany za pomocą
-          zaimprowizowanych środków, dzięki czemu jest wszechstronnym i
-          uniwersalnym sposobem telekomunikacji.
-        </p>
-
-        <a
-          href="https://pl.wikipedia.org/wiki/Kod_Morse%E2%80%99a"
-          target="_blank"
-          >Źródło</a
-        >
-      </div>
-    </div>
--->
     <footer>
       <div class="wrapper">
         <span class="copyright">Morse encoder &copy; 2020</span>
