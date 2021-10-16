@@ -18,7 +18,7 @@
 
 .contact-info-row {
   display: flex;
-  margin: 1.2rem 0;
+  margin: 0 1.2rem 1.2rem 0;
 }
 
 .column-wide {
@@ -31,4 +31,18 @@
 
 .bold {
   font-weight: bold;
+}
+
+@media screen and (max-width: 430px) {
+  .contact-wrapper {
+    display: block;
+  }
+
+  .p-2 {
+    padding: 0;
+  }
+
+  .contact-img {
+    margin: 1.2rem 0 0 0;
+  }
 }

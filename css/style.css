@@ -380,7 +380,7 @@ footer .wrapper {
 @media screen and (max-width: 1000px) {
   .wrapper {
     max-width: 90%;
-    min-width: 370px;
+    min-width: 360px;
   }
 
   .flex-row {
