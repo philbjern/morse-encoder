@@ -7,7 +7,7 @@
 .contact-img img {
   width: 100%;
   object-fit: cover;
-  border-radius: 5%;
+  border-radius: 10px;
 }
 
 .contact-info p {
@@ -45,4 +45,12 @@
   .contact-img {
     margin: 1.2rem 0 0 0;
   }
+}
+
+@media screen and (max-width: 700px) {
+  
+  .contact-wrapper {
+    display: block;
+  }
+
 }

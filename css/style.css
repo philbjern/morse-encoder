@@ -38,7 +38,7 @@ ul li {
 }
 
 .container {
-  padding: 20px 30px;
+  padding: 25px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -75,7 +75,8 @@ ul li {
 }
 
 .wrapper {
-  width: 100%;
+  width: 80%;
+  max-width: 680px;
   margin: 0 auto;
 }
 
@@ -359,8 +360,8 @@ form .controls {
 footer {
   color: #777;
   text-align: center;
-  margin-top: 20px;
-  min-height: 100px;
+  margin: 20px 0 20px 0;
+  height: 100px;
 }
 
 footer .wrapper {
@@ -377,10 +378,45 @@ footer .wrapper {
   display: none;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 430px) {
+  .tables {
+    display: block;
+  }
+
+  .tables table {
+    width: 100%;
+  }
+
+  .tables table tr td:nth-child(1) {
+    width: 20%;
+    text-align: right;
+  }
+
+  .tables table tr td:nth-child(2) {
+    padding: 0 0 0 0.5rem;
+  }
+
+  footer {
+    height: 20px;
+  }
+
+  .copyright {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .logo {
+    margin: 0.3rem 0 0 3px;
+  }
+
+  .nav {
+    margin-bottom: 0.5em;
+  }
+
   .wrapper {
-    max-width: 90%;
-    min-width: 360px;
+    max-width: 70%;
+    min-width: 355px;
   }
 
   .flex-row {
@@ -391,38 +427,7 @@ footer .wrapper {
     display: flex;
   }
 
-  .flex-row.tables {
-    display: flex;
-  }
-
   .navbar {
     display: block;
-  }
-  .nav {
-    margin-bottom: 1.5em;
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .wrapper {
-    max-width: 70%;
-  }
-
-  #outputText {
-    flex: 0 1 auto;
-  }
-
-  #progressBar {
-    flex: 1 1 auto;
-  }
-
-  .tables-wrapper .dash {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 1300px) {
-  .wrapper {
-    max-width: 680px;
   }
 }
