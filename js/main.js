@@ -290,21 +290,6 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-const navLinks = document.querySelectorAll(".nav a");
-
-// navLinks.forEach((element) => {
-// 	element.addEventListener('click', (e) => {
-// 		e.preventDefault();
-// 		if (e.target.hash !== '') {
-// 			const target = document.querySelector(e.target.hash);
-// 			target.scrollIntoView({
-// 				behavior: 'smooth',
-// 				block: 'start'
-// 			});
-// 		}
-// 	});
-// })
-
 document.addEventListener("DOMContentLoaded", (e) => {
   hideProgressBar();
 });
