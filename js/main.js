@@ -234,7 +234,7 @@ downloadButton.addEventListener("click", (event) => {
 });
 
 function getFileContent() {
-	let message = messageTextarea.value;
+  let message = messageTextarea.value;
   // encode message, and convert to string
   const encodedMessageArr = encode(message);
   console.log(encodedMessageArr);
@@ -242,25 +242,25 @@ function getFileContent() {
   let text = "";
   for (let character in encodedMessageArr) {
     let morseChar = encodedMessageArr[character].morse;
-		// if space between words
+    // if space between words
     if (morseChar == " ") {
-			// add two more spaces
+      // add two more spaces
       text += "  ";
     } else {
-			// remove spaces between characters
+      // remove spaces between characters
       morseChar = morseChar.replace(/\s/g, "");
       text += morseChar;
-			// add space at the end of a character code
+      // add space at the end of a character code
       text += " ";
     }
   }
 
-	return text;
+  return text;
 }
 
 function getFileName() {
-	// filename format: morse-1-2-3--10-10-2021
-	const date = new Date();
+  // filename format: morse-1-2-3--10-10-2021
+  const date = new Date();
   let filename = "morse-";
   filename += date.getHours() + "-";
   filename += date.getMinutes() + "-";
@@ -271,7 +271,7 @@ function getFileName() {
   filename += "-" + date.getFullYear();
   filename += ".txt";
 
-	return filename;
+  return filename;
 }
 
 function download(filename, text) {
