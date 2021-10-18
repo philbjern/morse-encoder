@@ -244,7 +244,7 @@ function getFileContent() {
     let morseChar = encodedMessageArr[character].morse;
     // if space between words
     if (morseChar == " ") {
-      // add two more spaces
+      // add 2 more spaces, to make it 3 spaces between words
       text += "  ";
     } else {
       // remove spaces between characters
